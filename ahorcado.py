@@ -8,81 +8,91 @@ print('██╔══██║██╔══██║██║   ██║█�
 print('██║  ██║██║  ██║╚██████╔╝██║  ██║╚██████╗██║  ██║██████╔╝╚██████╔╝')
 print('╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═════╝  ╚═════╝\n')
 ahorcado = ['''
-      +-----+
-      |     |
-            |
-            |
-            |
-            |
-    ===========''', '''
-      +-----+
-      |     |
-      O     |
-            |
-            |
-            |
-    ===========''', '''
-      +-----+
-      |     |
-      O     |
-      |     |
-            |
-            |
-    ===========''', '''
-      +-----+
-      |     |
-      O     |
-     /|     |
-            |
-            |
-    ===========''', '''
-      +-----+
-      |     |
-      O     |
-     /|\    |
-            |
-            |
-    ===========''', '''
-      +-----+
-      |     |
-      O     |
-     /|\    |
-     /      |
-            |
-    ===========''', '''
-      +-----+
-      |     |
-      O     |
-     /|\    |
-     / \    |
-            |
-    ===========     f''']
+			+-----+
+			|     |
+						|
+						|
+						|
+						|
+		===========''', '''
+			+-----+
+			|     |
+			O     |
+						|
+						|
+						|
+		===========''', '''
+			+-----+
+			|     |
+			O     |
+			|     |
+						|
+						|
+		===========''', '''
+			+-----+
+			|     |
+			O     |
+		 /|     |
+						|
+						|
+		===========''', '''
+			+-----+
+			|     |
+			O     |
+		 /|\    |
+						|
+						|
+		===========''', '''
+			+-----+
+			|     |
+			O     |
+		 /|\    |
+		 /      |
+						|
+		===========''', '''
+			+-----+
+			|     |
+			O     |
+		 /|\    |
+		 / \    |
+						|
+		===========     f''']
 palabra = lista_palabras[randint(0,len(lista_palabras)-1)]
 resultado = list("_"*len(palabra))
 mostrar = []
 print("Hola, bienvenido al juego del ahorcado, a continuación se mostrará la palabra que debes adivinar, para resolver puedes escribir 'resuelvo', si fallas, perderás! \n")
 while True:
-  mostrar = []
-  for caracteres in resultado:
-    mostrar.append(caracteres)
-    mostrar.append(" ")
-  print("".join(mostrar))
-  if "".join(resultado) == palabra:
-    break
-  letra = str(input("Introduce una letra: ").lower())
-  if letra.isalpha() and len(letra) == 1:
-    if letra in palabra:
-      num_letra = palabra.count(letra)
-      if num_letra == 1:
-        resultado[palabra.index(letra)] = letra
-      else:
-        for k in range(len(palabra)):
-          if letra == list(palabra)[k]:
-            resultado[k] = letra
-    else:
-      fallos = fallos +1
-      print(ahorcado[fallos-1])
-  else:
-    print("La letra introducida no es valida")
-  if fallos == len(ahorcado):
-    break
+	mostrar = []
+	for caracteres in resultado:
+		mostrar.append(caracteres)
+		mostrar.append(" ")
+	print("".join(mostrar))
+	if "".join(resultado) == palabra:
+		break
+	letra = str(input("Introduce una letra: ").lower())
+	if letra.isalpha() and len(letra) == 1:
+		if letra in palabra:
+			num_letra = palabra.count(letra)
+			if num_letra == 1:
+				resultado[palabra.index(letra)] = letra
+			else:
+				for k in range(len(palabra)):
+					if letra == list(palabra)[k]:
+						resultado[k] = letra
+		else:
+			fallos = fallos +1
+			print(ahorcado[fallos-1])
+	elif "resuelvo" in letra.lower():
+		print("\nIntroduce la palabra: ")
+		palabra_introducida = input()
+		if(palabra_introducida.lower() == palabra):
+			print("Has ganado!!!")
+			break
+		else:
+			print("Has perdido!")
+			break
+	else:
+		print("La letra introducida no es valida")
+	if fallos == len(ahorcado):
+		print("Has perdido!")
+		break
